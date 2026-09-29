@@ -66,31 +66,32 @@ public class GetUsersTest {
     @Test
     public void getUserUsingPathParameter() {
 
-        String requestBody = """
-                {
-                "name": "Eve",
-                "job": "trainer"
-                }
-                """;
 
-        Response createResponse =
-                given().
-                        contentType("application/json")
-                        .body(requestBody)
-                        .when()
-                        .post("https://reqres.in/api/users");
-
-        System.out.println(createResponse.asPrettyString());
-
-        int userId = createResponse.jsonPath().getInt("id");
-
-        System.out.println(userId);
+        int userId = 2;
 
         given()
+                .baseUri("https://reqres.in")
                 .pathParam("id", userId)
+
                 .when()
-                .get("https://reqres.in/api/users/{id}")
+                .get("/api/users/{id}")
+
                 .then()
                 .statusCode(200);
+
+    }
+
+    @Test
+    public void getNonExistingUser() {
+
+        given()
+                .baseUri("https://reqres.in")
+                .pathParam("id", 999999)
+
+                .when()
+                .get("/api/users/{id}")
+
+                .then()
+                .statusCode(404);
     }
 }
