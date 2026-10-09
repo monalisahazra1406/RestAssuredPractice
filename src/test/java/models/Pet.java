@@ -9,17 +9,19 @@ public class Pet {
     private List<String> photoUrls;
     private List<Tag> tags;
     private String status;
+    private Category category;
 
     public Pet() {
     }
 
-    public Pet(long id, String name, List<String> photoUrls, List<Tag> tags, String status){
+    public Pet(long id, String name, List<String> photoUrls, List<Tag> tags, String status, Category category){
 
         this.id = id;
         this.name = name;
         this.photoUrls = photoUrls;
         this.tags = tags;
         this.status = status;
+        this.category = category;
     }
 
     public long getId() {
@@ -62,4 +64,11 @@ public class Pet {
         this.status = status;
     }
 
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 }
