@@ -1,10 +1,13 @@
 package tests;
 
 import io.restassured.response.Response;
+import models.Pet;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import specs.RequestSpecFactory;
 import specs.ResponseSpecFactory;
+
+import java.util.List;
 
 import static io.restassured.RestAssured.given;
 
@@ -14,7 +17,7 @@ public class CreatePetTest {
     public void createPet(){
 
         long petId = 2026100500044L;
-        String requestBody = """
+         /*String requestBody = """
                 {
                  "id": %d,
                                   "name": "RestAssuredDog",
@@ -23,12 +26,22 @@ public class CreatePetTest {
                                   ],
                                   "status": "available"
                 }
-                """.formatted(petId);
+                """.formatted(petId);*/
+
+        Pet pet = new Pet();
+        pet.setId(petId);
+        pet.setName("PojoRestAssuredDog");
+        pet.setPhotoUrls(List.of("https://example.com/dog.jpg"));
+        pet.setTags(List.of());
+        pet.setStatus("available");
+
         Response response = given()
                 .spec(RequestSpecFactory.getJsonRequestSpec())
-                .body(requestBody)
+                .body(pet)
                 .when()
                 .post("/pet");
+
+
 
         response.then()
                 .spec(ResponseSpecFactory.getSuccessResponseSpec());
