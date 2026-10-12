@@ -8,6 +8,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import specs.RequestSpecFactory;
 import specs.ResponseSpecFactory;
+import testdata.PetTestDataBuilder;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -28,12 +29,11 @@ public class UploadPetImageTest {
         // STEP 1 - CREATE PET
         // =========================
 
-        Pet requestPet = new Pet();
-        requestPet.setId(petId);
-        requestPet.setName("ImageUploadDog");
-        requestPet.setPhotoUrls(List.of(originalPhotoUrl));
-        requestPet.setTags(List.of());
-        requestPet.setStatus("available");
+        Pet requestPet = new PetTestDataBuilder()
+                .withId(petId)
+                .withName("PetBuilder")
+                .withStatus("available")
+                .build();
 
         given()
                 .spec(RequestSpecFactory.getJsonRequestSpec())
