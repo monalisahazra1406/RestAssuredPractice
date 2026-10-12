@@ -129,7 +129,7 @@ public class PetApiChainingTest {
                         .delete("/pet/{petId}",createdPetId)
                         .then()
                         .log().all()
-                        .statusCode(200)
+                        .spec(ResponseSpecFactory.getNotFoundResponseSpec())
                         .extract().response();
 
         // =========================
@@ -144,7 +144,7 @@ public class PetApiChainingTest {
                         .get("/pet/{petId}",createdPetId)
                         .then()
                         .log().all()
-                        .statusCode(404)
+                        .spec(ResponseSpecFactory.getNotFoundResponseSpec())
                         .extract().response();
 
 

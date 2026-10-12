@@ -21,4 +21,12 @@ public class ResponseSpecFactory {
                 .expectContentType(ContentType.JSON)
                 .build();
     }
+
+    public static ResponseSpecification getNotFoundResponseSpec(){
+
+        return new ResponseSpecBuilder()
+                .expectStatusCode(404)
+                .expectContentType(ContentType.JSON)
+                .build();
+    }
 }

@@ -56,24 +56,17 @@ public class UploadPetImageTest {
         // =========================
 
         Response uploadResponse =
-                given()
-                        .spec(RequestSpecFactory.getDefaultRequestSpec())
-                        .config(
-                                io.restassured.config.RestAssuredConfig.config()
-                                        .encoderConfig(
-                                                io.restassured.config.EncoderConfig.encoderConfig()
-                                                        .appendDefaultContentCharsetToContentTypeIfUndefined(false)))
-                        .contentType(ContentType.BINARY)
-                        .accept(ContentType.JSON)
-                        .body(imageBytes)
-                        .pathParam("petId",petId)
-                        .log().all()
-                        .when()
-                        .post("/pet/{petId}/uploadImage")
-                        .then()
-                        .log().all()
-                        .spec(ResponseSpecFactory.getSuccessResponseSpec())
-                        .extract().response();
+               given()
+                       .spec(RequestSpecFactory.getBinaryRequestSpec())
+                       .body(imageBytes)
+                       .pathParam("petId", petId)
+                       .log().all()
+                       .when()
+                       .post("/pet/{petId}?uploadImage")
+                       .then()
+                       .log().all()
+                       .spec(ResponseSpecFactory.getSuccessResponseSpec())
+                       .extract().response();
 
         // =========================
         // STEP 4 - DESERIALIZE RESPONSE
