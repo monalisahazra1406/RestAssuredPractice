@@ -1,5 +1,6 @@
 package tests;
 
+import base.BaseTest;
 import models.Category;
 import models.Pet;
 import models.Tag;
@@ -12,7 +13,7 @@ import java.util.List;
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
-public class PetSchemaValidationTest {
+public class PetSchemaValidationTest extends BaseTest {
 
     @Test
     public void validatePetResponseSchema(){
@@ -53,7 +54,6 @@ public class PetSchemaValidationTest {
                 .when()
                 .get("/pet/{petId}")
                 .then()
-                .log().all()
                 .spec(ResponseSpecFactory.getSuccessResponseSpec())
                 .body(matchesJsonSchemaInClasspath("schemas/pet-schema.json"));
 

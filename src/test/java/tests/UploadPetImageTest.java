@@ -1,5 +1,6 @@
 package tests;
 
+import base.BaseTest;
 import io.restassured.common.mapper.TypeRef;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -17,7 +18,7 @@ import java.util.List;
 
 import static io.restassured.RestAssured.given;
 
-public class UploadPetImageTest {
+public class UploadPetImageTest extends BaseTest {
 
     @Test
     public void uploadPetImage() throws IOException {
@@ -60,11 +61,9 @@ public class UploadPetImageTest {
                        .spec(RequestSpecFactory.getBinaryRequestSpec())
                        .body(imageBytes)
                        .pathParam("petId", petId)
-                       .log().all()
                        .when()
                        .post("/pet/{petId}?uploadImage")
                        .then()
-                       .log().all()
                        .spec(ResponseSpecFactory.getSuccessResponseSpec())
                        .extract().response();
 

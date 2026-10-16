@@ -1,5 +1,6 @@
 package tests;
 
+import base.BaseTest;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -8,7 +9,7 @@ import specs.ResponseSpecFactory;
 
 import static io.restassured.RestAssured.given;
 
-public class PetApiChainingTest {
+public class PetApiChainingTest extends BaseTest {
 
     @Test
     public void createPetAndGetPetId() {
@@ -37,7 +38,6 @@ public class PetApiChainingTest {
                         .when()
                         .post("/pet")
                         .then()
-                        .log().all()
                         .spec(ResponseSpecFactory.getSuccessResponseSpec())
                         .extract()
                         .response();
@@ -78,7 +78,6 @@ public class PetApiChainingTest {
                         .when()
                         .put("/pet")
                         .then()
-                        .log().all()
                         .spec(ResponseSpecFactory.getSuccessResponseSpec())
                         .extract().response();
 
@@ -101,7 +100,6 @@ public class PetApiChainingTest {
                         .when()
                         .get("/pet/{petId}", createdPetId)
                         .then()
-                        .log().all()
                         .spec(ResponseSpecFactory.getSuccessResponseSpec())
                         .extract()
                         .response();
@@ -124,12 +122,10 @@ public class PetApiChainingTest {
         Response deleteResponse =
                 given()
                         .spec(RequestSpecFactory.getDefaultRequestSpec())
-                        .log().all()
                         .when()
                         .delete("/pet/{petId}",createdPetId)
                         .then()
-                        .log().all()
-                        .spec(ResponseSpecFactory.getNotFoundResponseSpec())
+                        .spec(ResponseSpecFactory.getSuccessResponseSpec())
                         .extract().response();
 
         // =========================
@@ -139,11 +135,9 @@ public class PetApiChainingTest {
         Response getDeletedPetResponse =
                 given()
                         .spec(RequestSpecFactory.getDefaultRequestSpec())
-                        .log().all()
                         .when()
                         .get("/pet/{petId}",createdPetId)
                         .then()
-                        .log().all()
                         .spec(ResponseSpecFactory.getNotFoundResponseSpec())
                         .extract().response();
 

@@ -1,5 +1,6 @@
 package tests;
 
+import base.BaseTest;
 import io.restassured.response.Response;
 import models.Pet;
 import org.testng.Assert;
@@ -11,7 +12,7 @@ import java.util.List;
 
 import static io.restassured.RestAssured.given;
 
-public class CreatePetTest {
+public class CreatePetTest extends BaseTest {
 
     @Test
     public void createPet(){

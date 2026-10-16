@@ -1,5 +1,6 @@
 package tests;
 
+import base.BaseTest;
 import io.restassured.common.mapper.TypeRef;
 import io.restassured.response.Response;
 import models.Category;
@@ -9,12 +10,11 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import specs.RequestSpecFactory;
 import specs.ResponseSpecFactory;
-
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
 
-public class FindPetsByTagsPojoTest {
+public class FindPetsByTagsPojoTest extends BaseTest {
 
     @Test
     public void createPetAndFindByTag() {
@@ -48,11 +48,9 @@ public class FindPetsByTagsPojoTest {
                 given()
                         .spec(RequestSpecFactory.getJsonRequestSpec())
                         .body(requestPet)
-                        .log().all()
                         .when()
                         .post("/pet")
                         .then()
-                        .log().all()
                         .spec(ResponseSpecFactory.getSuccessResponseSpec())
                         .extract().response();
 
@@ -76,11 +74,9 @@ public class FindPetsByTagsPojoTest {
                 given()
                         .spec(RequestSpecFactory.getDefaultRequestSpec())
                         .queryParam("tags",uniqueTag)
-                        .log().all()
                         .when()
                         .get("/pet/findByTags")
                         .then()
-                        .log().all()
                         .spec(ResponseSpecFactory.getSuccessResponseSpec())
                         .extract().response();
 

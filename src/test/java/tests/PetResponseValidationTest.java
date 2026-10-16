@@ -1,5 +1,6 @@
 package tests;
 
+import base.BaseTest;
 import io.restassured.http.ContentType;
 import models.Pet;
 import org.testng.annotations.Test;
@@ -10,7 +11,7 @@ import java.util.List;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
-public class PetResponseValidationTest {
+public class PetResponseValidationTest extends BaseTest {
 
     @Test
     public void validatePetResponseUsingHamcrest() {
@@ -41,7 +42,6 @@ public class PetResponseValidationTest {
                 .when()
                 .get("/pet/{petId}")
                 .then()
-                .log().all()
 
         //STATUS VALIDATION
 

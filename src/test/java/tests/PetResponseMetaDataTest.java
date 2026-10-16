@@ -1,5 +1,6 @@
 package tests;
 
+import base.BaseTest;
 import models.Pet;
 import org.testng.annotations.Test;
 import specs.RequestSpecFactory;
@@ -10,7 +11,7 @@ import java.util.List;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
-public class PetResponseMetaDataTest {
+public class PetResponseMetaDataTest extends BaseTest {
 
     @Test
     public void validatePetResponseMetaData(){
@@ -18,11 +19,9 @@ public class PetResponseMetaDataTest {
         given()
                 .spec(RequestSpecFactory.getDefaultRequestSpec())
                 .queryParam("status","available")
-                .log().all()
                 .when()
                 .get("/pet/findByStatus")
                 .then()
-                .log().all()
 
                 //Content type validation
                 .header("Content-Type", containsString("application/json"))

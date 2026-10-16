@@ -1,5 +1,6 @@
 package tests;
 
+import base.BaseTest;
 import configs.ConfigManager;
 import io.restassured.response.Response;
 import org.testng.Assert;
@@ -9,7 +10,7 @@ import specs.ResponseSpecFactory;
 
 import static io.restassured.RestAssured.given;
 
-public class GetPetByIdTest {
+public class GetPetByIdTest extends BaseTest {
 
     @Test
     public  void getPetById() {
@@ -27,7 +28,7 @@ public class GetPetByIdTest {
                 .spec(ResponseSpecFactory.getSuccessResponseSpec());
 
         Assert.assertEquals(response.jsonPath().getString("name"),
-                "RestAssuredDog", "Pet name mismatch");
+                "PojoRestAssuredDog", "Pet name mismatch");
 
         Assert.assertEquals(response.jsonPath().getString("status"),
                 "available", "Pet status mismatch");

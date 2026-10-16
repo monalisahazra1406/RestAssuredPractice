@@ -1,5 +1,6 @@
 package tests;
 
+import base.BaseTest;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
@@ -12,7 +13,7 @@ import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 
-public class PetStatusTest {
+public class PetStatusTest extends BaseTest {
 
     @DataProvider(name="petStatuses")
     public Object[][] petStatuses(){
