@@ -37,6 +37,7 @@ public class RequestSpecFactory {
         return new RequestSpecBuilder().addRequestSpecification(getDefaultRequestSpec())
                 .setConfig(config)
                 .setAccept("application/octet-stream")
+                .setAccept(ContentType.JSON)
                 .build();
 
     }

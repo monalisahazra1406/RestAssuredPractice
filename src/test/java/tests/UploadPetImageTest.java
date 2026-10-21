@@ -62,7 +62,7 @@ public class UploadPetImageTest extends BaseTest {
                        .body(imageBytes)
                        .pathParam("petId", petId)
                        .when()
-                       .post("/pet/{petId}?uploadImage")
+                       .post("/pet/{petId}/uploadImage")
                        .then()
                        .spec(ResponseSpecFactory.getSuccessResponseSpec())
                        .extract().response();
@@ -79,7 +79,7 @@ public class UploadPetImageTest extends BaseTest {
 
         Assert.assertEquals(uploadedPet.getId(),petId,
                 "Pet ID is incorrect");
-        Assert.assertEquals(uploadedPet.getName(),"ImageUploadDog",
+        Assert.assertEquals(uploadedPet.getName(),"PetBuilder",
                 "Name is incorrect");
         Assert.assertTrue(uploadedPet.getPhotoUrls().contains(originalPhotoUrl),"Photo URL is missing");
         Assert.assertTrue(uploadedPet.getPhotoUrls().size()>1,

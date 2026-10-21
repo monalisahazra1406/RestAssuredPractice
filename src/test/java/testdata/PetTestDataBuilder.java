@@ -11,7 +11,7 @@ public class PetTestDataBuilder {
     private long id = System.currentTimeMillis();
     private Category category = new Category(1,"cats");
     private String name = "PetTestDataBuilderCat";
-    private List<String> photoUrls = List.of("https://example.com/default-dog.jpg");
+    private List<String> photoUrls = List.of("https://example.com/original-dog.jpg");
     private List<Tag> tags = List.of();
     private String status = "available";
 

@@ -28,7 +28,7 @@ public class XmlPathTest {
                         .response();
 
         //Root element attribute
-        String slideShowTitle = response.xmlPath().getString("slideshow@title");
+        String slideShowTitle = response.xmlPath().getString("slideshow.@title");
 
         // First slide title
         String firstSlideTitle = response.xmlPath().getString("slideshow.slide[0].title");
