@@ -32,6 +32,14 @@ pipeline {
             testResults: 'target/surefire-reports/*.xml'
             archiveArtifacts artifacts: 'target/allure-results/**',
             allowEmptyArchive: true
+
+            allure([
+                    includeProperties: false,
+                    jdk: '',
+                    properties: [],
+                    reportBuildPolicy: 'ALWAYS',
+                    results: [[path: 'target/allure-results']]
+            ])
         }
 
         success {
