@@ -12,6 +12,7 @@ pipeline {
 
         stage('Environment Check'){
             steps {
+                bat 'whoami'
                 bat 'java -version'
                 bat 'mvn -version'
             }
